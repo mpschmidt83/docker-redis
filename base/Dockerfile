@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ubuntu:14.04.4
 
 MAINTAINER Konrad Król <k.krol@oberthur.com>
 
