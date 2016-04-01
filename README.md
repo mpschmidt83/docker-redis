@@ -4,7 +4,6 @@ This repository contains docker images that allows to start Redis server instanc
 - **standalone master**
 - **cluster node**
 - **slave**
-- **sentinel**
 
 ## Images types
 
@@ -13,7 +12,6 @@ There are the following images defined:
 - **redis_base** - base image which other images inherits from
 - **redis_standalone** - image containing standalone redis instance (master)
 - **redis_slave** - image containing redis slave instance
-- **redis_sentinel** - image containing redis sentinel instance
 - **redis_cluster** - image containing redis cluster node instance
 - **redis_tools** - image containing redis tools for redis cluster management
 
@@ -24,7 +22,6 @@ You can find example scripts in "scripts" directory:
 - **init-cluster.sh** - initiates cluster from already running Redis instances
 - **run_standalone.sh** - starts standalone Redis instance
 - **run-cluster-locally.sh** - starts a Redis cluster locally (6 instances - 3 master and 3 slaves)
-- **run-with-sentinels.sh** - starts a Redis master with slaves and sentinels (1 master, 2 slaves, 3 sentinels)
 
 ## Clusterization
 
