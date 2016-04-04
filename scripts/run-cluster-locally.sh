@@ -24,7 +24,7 @@ docker run -d -p 6382:6379 --name=redis-cluster-node4 oberthur/redis-cluster
 docker run -d -p 6383:6379 --name=redis-cluster-node5 oberthur/redis-cluster
 docker run -d -p 6384:6379 --name=redis-cluster-node6 oberthur/redis-cluster
 
-docker run -it oberthur/redis-tools /redis-trib-autoconfirm.rb create --replicas 1 \
+docker exec -it redis-cluster-node1 /redis-trib-autoconfirm.rb create --replicas 1 \
 	$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' redis-cluster-node1):6379 \
 	$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' redis-cluster-node2):6379 \
 	$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' redis-cluster-node3):6379 \

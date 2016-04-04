@@ -9,11 +9,9 @@ This repository contains docker images that allows to start Redis server instanc
 
 There are the following images defined:
 
-- **redis_base** - base image which other images inherits from
+- **redis_base** - base image which other images inherits from, contains redis tools for redis cluser management
 - **redis_standalone** - image containing standalone redis instance (master)
-- **redis_slave** - image containing redis slave instance
 - **redis_cluster** - image containing redis cluster node instance
-- **redis_tools** - image containing redis tools for redis cluster management
 
 ## Scripts
 
@@ -29,12 +27,6 @@ In order to start Redis cluster, one should start at least 3 cluster nodes and e
 
 ## Customization
 
-Environment variables may be used to customize/update redis default properties.
-ENV vars should be passed when running container.
-Below you can find a list of files with ENV vars.
-
-For now redis-slave and redis-sentinel images requires the following ENV variables to be provided:
-- REDIS_MASTER_PORT_6379_TCP_ADDR
-- REDIS_MASTER_PORT_6379_TCP_PORT
-
-They can be provided manually by using "-e" parameter while running "docker run" or by linking containers together using "--link" parameter.
+You can run redis insiede container with custom opstions like 
+/data/cfg/redis.conf --port 6379
+Just add it as docker command.

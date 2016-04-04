@@ -10,4 +10,4 @@ if [ -z "$1" ]; then
 fi
 
 REPLICAS=$1; shift
-docker run -it oberthur/redis-tools /redis-3.0.5/src/redis-trib.rb create --replicas $REPLICAS $@
+docker run -it oberthur/redis-cluster /redis-3.0.7/src/redis-trib.rb create --replicas $REPLICAS $@

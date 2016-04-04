@@ -6,5 +6,5 @@ EXPOSE 6379
 RUN sysctl vm.overcommit_memory=1
 ADD redis.conf /etc/redis.conf
 ENTRYPOINT ["/usr/local/bin/redis-server"]
-CMD ["/etc/redis.conf --port 6379"]
+CMD ["/etc/redis.conf"]
 
