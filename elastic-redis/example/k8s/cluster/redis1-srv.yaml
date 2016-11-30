@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-001-node-101
+  namespace: redis-cluster
+  labels:
+    type: cluster
+    app: redis
+spec:
+  ports:
+  - name: redis1-db
+    port: 6379
+    targetPort: 6379
+  - name: redis1-cluster
+    port: 16379
+    targetPort: 16379
+  selector:
+    app: redis
+    node-id: node-101

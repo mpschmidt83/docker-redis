@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-node
+  namespace: redis-standalone
+  labels:
+    app: redis-node
+spec:
+  externalIPs: [
+    "192.168.99.100"
+  ]
+  ports:
+  - name: redis-port
+    port: 6379
+    targetPort: 6379
+  selector:
+    app: redis-node
