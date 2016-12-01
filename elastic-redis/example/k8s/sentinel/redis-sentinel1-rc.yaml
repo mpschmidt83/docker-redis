@@ -5,16 +5,19 @@ metadata:
   namespace: redis-sentinel
   labels:
     app: redis-sentinel
+    node-id: redis-sentinel-1
 
 spec:
   replicas: 1
   selector:
     app: redis-sentinel
+    node-id: redis-sentinel-1
 
   template:
     metadata:
       labels:
         app: redis-sentinel
+        node-id: redis-sentinel-1
     spec:
       containers:
       - name: redis-sentinel
