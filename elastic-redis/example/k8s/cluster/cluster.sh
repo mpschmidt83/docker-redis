@@ -20,11 +20,15 @@ function create() {
   kubectl --namespace=redis-cluster create -f redis5-rc.yaml
   kubectl --namespace=redis-cluster create -f redis6-rc.yaml
 
+  kubectl --namespace=redis-cluster create -f cluster-metrics-rc.yaml
+
 }
 
 
 
 function delete() {
+
+  kubectl --namespace=redis-cluster delete rc cluster-metrics
 
   kubectl --namespace=redis-cluster delete rc redis-node-101
   kubectl --namespace=redis-cluster delete rc redis-node-102

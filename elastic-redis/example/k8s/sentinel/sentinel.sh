@@ -20,6 +20,8 @@ function create() {
   kubectl --namespace=redis-sentinel create -f redis-sentinel2-rc.yaml
   kubectl --namespace=redis-sentinel create -f redis-sentinel3-rc.yaml
 
+  kubectl --namespace=redis-sentinel create -f sentinel-metrics-rc.yaml
+
 
 }
 
@@ -27,6 +29,7 @@ function create() {
 
 function delete() {
 
+  kubectl --namespace=redis-sentinel delete rc sentinel-metrics
 
   kubectl --namespace=redis-sentinel delete rc redis-sentinel-1
   kubectl --namespace=redis-sentinel delete rc redis-sentinel-2

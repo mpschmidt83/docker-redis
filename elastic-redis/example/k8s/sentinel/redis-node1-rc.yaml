@@ -17,7 +17,7 @@ spec:
         app: redis-node-1
     spec:
       containers:
-      - name: redis-node-1
+      - name: redis-node
         image: mpschmidt/elastic-redis:3.2.5-1.0
         imagePullPolicy: IfNotPresent
         env:
@@ -37,6 +37,7 @@ spec:
           value: |
             slave-announce-ip ${REDIS_NODE_1_SERVICE_HOST}
             slave-announce-port ${REDIS_NODE_1_SERVICE_PORT}
+            appendonly no
         ports:
         - name: redis-port
           containerPort: 6379

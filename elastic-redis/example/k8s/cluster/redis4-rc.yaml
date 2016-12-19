@@ -20,8 +20,7 @@ spec:
         node-id: node-202
     spec:
       containers:
-
-      - name: redis-node-201
+      - name: redis-node
         image: mpschmidt/elastic-redis:3.2.5-1.0
         imagePullPolicy: IfNotPresent
         command: ["/run.sh"]

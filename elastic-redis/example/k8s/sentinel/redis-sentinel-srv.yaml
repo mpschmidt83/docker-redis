@@ -6,6 +6,7 @@ metadata:
   labels:
     app: redis-sentinel
 spec:
+  type: LoadBalancer
   externalIPs: [
     "192.168.99.100"
   ]
