@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-sentinel
+  namespace: redis-sentinel
+  labels:
+    app: redis-sentinel
+spec:
+  type: LoadBalancer
+  externalIPs: [
+    "192.168.99.100"
+  ]
+  ports:
+  - name: redis-sentinel
+    port: 26379
+    targetPort: 26379
+  selector:
+    app: redis-sentinel

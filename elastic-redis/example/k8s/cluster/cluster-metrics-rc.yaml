@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: cluster-metrics
+  namespace: redis-cluster
+  labels:
+    app: cluster-metrics
+
+spec:
+  replicas: 1
+  selector:
+    app: cluster-metrics
+
+  template:
+    metadata:
+      labels:
+        app: cluster-metrics
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9121"
+        prometheus.io/path: "/metrics"
+    spec:
+      containers:
+      - name: redis-exporter
+        image: oliver006/redis_exporter:v0.10.3
+        args:
+          - "-redis.addr=redis://redis-001-node-101:6379,redis://redis-001-node-102:6379,redis://redis-001-node-201:6379,redis://redis-001-node-202:6379,redis://redis-001-node-301:6379,redis://redis-001-node-302:6379"
+          - "-namespace=redis_cluster"
+        ports:
+        - name: metrics-port
+          containerPort: 9121
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 50m
+            memory: 128Mi
+          requests:
+            cpu: 50m
+            memory: 64Mi
+        livenessProbe:
+          tcpSocket:
+            port: 9121
+          initialDelaySeconds: 30
+          timeoutSeconds: 5

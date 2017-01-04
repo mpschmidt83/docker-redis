@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: sentinel-metrics
+  namespace: redis-sentinel
+  labels:
+    app: sentinel-metrics
+
+spec:
+  replicas: 1
+  selector:
+    app: sentinel-metrics
+
+  template:
+    metadata:
+      labels:
+        app: sentinel-metrics
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9121"
+        prometheus.io/path: "/metrics"
+    spec:
+      containers:
+      - name: redis-exporter
+        image: oliver006/redis_exporter:v0.10.3
+        args:
+          - "-redis.addr=redis://redis-node-1:6379,redis://redis-node-2:6379,redis://redis-node-3:6379"
+          - "-namespace=redis_sentinel"
+        ports:
+        - name: metrics-port
+          containerPort: 9121
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 50m
+            memory: 128Mi
+          requests:
+            cpu: 50m
+            memory: 64Mi
+        livenessProbe:
+          tcpSocket:
+            port: 9121
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
