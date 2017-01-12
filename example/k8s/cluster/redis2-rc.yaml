@@ -21,9 +21,8 @@ spec:
     spec:
       containers:
       - name: redis-node
-        image: mpschmidt/elastic-redis:3.2.5-1.0
+        image: mpschmidt/elastic-redis:3.2.5-1.1
         imagePullPolicy: IfNotPresent
-        command: ["/run.sh"]
         args:
           - "--appendonly no"
         env:
