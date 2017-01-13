@@ -31,5 +31,5 @@ WORKDIR /data
 
 EXPOSE 6379
 
-ENTRYPOINT [ /run.sh ]
+ENTRYPOINT [" /run.sh "]
 
