@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: redis-node
-        image: mpschmidt/elastic-redis:3.2.5-1.1
+        image: oberthur/docker-redis:3.2.5
         imagePullPolicy: IfNotPresent
         env:
         - name: "REDIS_NODE_TYPE"
