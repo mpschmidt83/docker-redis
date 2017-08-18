@@ -2,7 +2,7 @@ FROM oberthur/docker-ubuntu:16.04
 
 MAINTAINER Marcin Schmidt <m.schmidt@oberthur.com>
 
-ENV REDIS_VERSION 3.2.5
+ENV REDIS_VERSION 4.0.1
 
 COPY run.sh /run.sh
 

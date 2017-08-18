@@ -1,17 +1,17 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: redis-001-node-301
+  name: redis-301
   namespace: redis-cluster
   labels:
     type: cluster
     app: redis
 spec:
   ports:
-  - name: redis5-db
+  - name: redis-db
     port: 6379
     targetPort: 6379
-  - name: redis5-cluster
+  - name: redis-cluster
     port: 16379
     targetPort: 16379
   selector:

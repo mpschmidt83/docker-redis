@@ -1,7 +1,7 @@
-apiVersion: v1
-kind: ReplicationController
+apiVersion: extensions/v1beta1
+kind: Deployment
 metadata:
-  name: redis-node-101
+  name: redis-101
   namespace: redis-cluster
   labels:
     app: redis
@@ -9,10 +9,6 @@ metadata:
 
 spec:
   replicas: 1
-  selector:
-    app: redis
-    node-id: node-101
-
   template:
     metadata:
       labels:
@@ -21,7 +17,7 @@ spec:
     spec:
       containers:
       - name: redis-node
-        image: oberthur/docker-redis:3.2.5
+        image: oberthur/docker-redis:4.0.1
         imagePullPolicy: IfNotPresent
         args:
           - "--appendonly no"
@@ -31,33 +27,34 @@ spec:
           value: "CLUSTER_NODE"
         - name: "CLUSTER_CONFIG"
           value: |
-            cluster2-dev--------------redis-node-101 ${REDIS_001_NODE_101_SERVICE_HOST}:${REDIS_001_NODE_101_SERVICE_PORT} myself,master - 0 0 0 connected 0-5460
-            cluster2-dev--------------redis-node-102 ${REDIS_001_NODE_102_SERVICE_HOST}:${REDIS_001_NODE_102_SERVICE_PORT} slave - 0 0 0 connected
-            cluster2-dev--------------redis-node-201 ${REDIS_001_NODE_201_SERVICE_HOST}:${REDIS_001_NODE_201_SERVICE_PORT} slave - 0 0 0 connected
-            cluster2-dev--------------redis-node-202 ${REDIS_001_NODE_202_SERVICE_HOST}:${REDIS_001_NODE_202_SERVICE_PORT} slave - 0 0 0 connected
-            cluster2-dev--------------redis-node-301 ${REDIS_001_NODE_301_SERVICE_HOST}:${REDIS_001_NODE_301_SERVICE_PORT} slave - 0 0 0 connected
-            cluster2-dev--------------redis-node-302 ${REDIS_001_NODE_302_SERVICE_HOST}:${REDIS_001_NODE_302_SERVICE_PORT} slave - 0 0 0 connected
+            cluster2-dev--------------redis-node-101 ${REDIS_101_SERVICE_HOST}:${REDIS_101_SERVICE_PORT} myself,master - 0 0 0 connected 0-5460
+            cluster2-dev--------------redis-node-102 ${REDIS_102_SERVICE_HOST}:${REDIS_102_SERVICE_PORT} slave - 0 0 0 connected
+            cluster2-dev--------------redis-node-201 ${REDIS_201_SERVICE_HOST}:${REDIS_201_SERVICE_PORT} slave - 0 0 0 connected
+            cluster2-dev--------------redis-node-202 ${REDIS_202_SERVICE_HOST}:${REDIS_202_SERVICE_PORT} slave - 0 0 0 connected
+            cluster2-dev--------------redis-node-301 ${REDIS_301_SERVICE_HOST}:${REDIS_SERVICE_PORT} slave - 0 0 0 connected
+            cluster2-dev--------------redis-node-302 ${REDIS_302_SERVICE_HOST}:${REDIS_302_SERVICE_PORT} slave - 0 0 0 connected
             vars currentEpoch 0 lastVoteEpoch 0
 
         - name: "REDIS_CONFIG"
           value: |
             cluster-node-timeout 1000
             cluster-require-full-coverage yes
+            cluster-announce-ip ${REDIS_101_SERVICE_HOST}
 
         ports:
-        - name: redis1-port
+        - name: redis-port
           containerPort: 6379
           protocol: TCP
-        - name: redis1-cluster
+        - name: redis-cluster
           containerPort: 16379
           protocol: TCP
         resources:
           limits:
-            cpu: 100m
-            memory: 200Mi
+            cpu: 50m
+            memory: 100Mi
           requests:
-            cpu: 100m
-            memory: 200Mi
+            cpu: 50m
+            memory: 100Mi
         livenessProbe:
           tcpSocket:
             port: 6379

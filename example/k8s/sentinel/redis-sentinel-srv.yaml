@@ -7,9 +7,6 @@ metadata:
     app: redis-sentinel
 spec:
   type: LoadBalancer
-  externalIPs: [
-    "192.168.99.100"
-  ]
   ports:
   - name: redis-sentinel
     port: 26379

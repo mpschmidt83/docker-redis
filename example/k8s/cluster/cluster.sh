@@ -28,21 +28,21 @@ function create() {
 
 function delete() {
 
-  kubectl --namespace=redis-cluster delete rc cluster-metrics
+  kubectl --namespace=redis-cluster delete deployment cluster-metrics
 
-  kubectl --namespace=redis-cluster delete rc redis-node-101
-  kubectl --namespace=redis-cluster delete rc redis-node-102
-  kubectl --namespace=redis-cluster delete rc redis-node-201
-  kubectl --namespace=redis-cluster delete rc redis-node-202
-  kubectl --namespace=redis-cluster delete rc redis-node-301
-  kubectl --namespace=redis-cluster delete rc redis-node-302
+  kubectl --namespace=redis-cluster delete deployment redis-101
+  kubectl --namespace=redis-cluster delete deployment redis-102
+  kubectl --namespace=redis-cluster delete deployment redis-201
+  kubectl --namespace=redis-cluster delete deployment redis-202
+  kubectl --namespace=redis-cluster delete deployment redis-301
+  kubectl --namespace=redis-cluster delete deployment redis-302
 
-  kubectl --namespace=redis-cluster delete svc redis-001-node-101
-  kubectl --namespace=redis-cluster delete svc redis-001-node-102
-  kubectl --namespace=redis-cluster delete svc redis-001-node-201
-  kubectl --namespace=redis-cluster delete svc redis-001-node-202
-  kubectl --namespace=redis-cluster delete svc redis-001-node-301
-  kubectl --namespace=redis-cluster delete svc redis-001-node-302
+  kubectl --namespace=redis-cluster delete svc redis-101
+  kubectl --namespace=redis-cluster delete svc redis-102
+  kubectl --namespace=redis-cluster delete svc redis-201
+  kubectl --namespace=redis-cluster delete svc redis-202
+  kubectl --namespace=redis-cluster delete svc redis-301
+  kubectl --namespace=redis-cluster delete svc redis-302
 
   kubectl delete namespace redis-cluster
 

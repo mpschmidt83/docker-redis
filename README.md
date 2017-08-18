@@ -1,6 +1,6 @@
 # docker-redis
 
-This redis image is based on __Redis 3.2.5__ and allows run redis in three ways:
+This redis image is based on __Redis 4.0.1__ and allows run redis in three ways:
 
 * __Redis Sentinel__
 * __Redis Cluster__

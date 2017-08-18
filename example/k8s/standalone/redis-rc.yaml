@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: redis-node
-        image: oberthur/docker-redis:3.2.5
+        image: oberthur/docker-redis:4.0.1
         imagePullPolicy: IfNotPresent
         env:
         - name: "REDIS_NODE_TYPE"

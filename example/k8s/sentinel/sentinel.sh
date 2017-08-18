@@ -22,7 +22,6 @@ function create() {
 
   kubectl --namespace=redis-sentinel create -f sentinel-metrics-rc.yaml
 
-
 }
 
 
